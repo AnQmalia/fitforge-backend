@@ -10,7 +10,7 @@
         "projectUniqueName": "/home/user/Pulpit/FitForge.Api/FitForge.Api.csproj",
         "projectName": "FitForge.Api",
         "projectPath": "/home/user/Pulpit/FitForge.Api/FitForge.Api.csproj",
-        "packagesPath": "/home/user/.nuget/packages/",
+        "packagesPath": "/tmp/cursor-sandbox-cache/4ab9535f040d667304ae5ed87920ac8c/nuget",
         "outputPath": "/home/user/Pulpit/FitForge.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -24,7 +24,6 @@
         },
         "frameworks": {
           "net8.0": {
-            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -42,7 +41,6 @@
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
