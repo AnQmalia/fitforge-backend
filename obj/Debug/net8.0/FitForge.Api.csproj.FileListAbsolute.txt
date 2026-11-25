@@ -108,3 +108,4 @@
 /home/user/Pulpit/FitForge.Api/obj/Debug/net8.0/FitForge.Api.pdb
 /home/user/Pulpit/FitForge.Api/obj/Debug/net8.0/FitForge.Api.genruntimeconfig.cache
 /home/user/Pulpit/FitForge.Api/obj/Debug/net8.0/ref/FitForge.Api.dll
+/home/user/Pulpit/FitForge.Api/obj/Debug/net8.0/FitForge.Api.sourcelink.json

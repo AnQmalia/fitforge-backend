@@ -57,6 +57,88 @@ namespace FitForge.Api.Migrations
                         .HasDatabaseName("ix_exercises_musclegroupid");
 
                     b.ToTable("exercises");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Połóż się na ławce, ściągnij łopatki i wypchnij sztangę nad klatkę, kontrolując ruch w dół.",
+                            EquipmentNeeded = "Sztanga, ławka",
+                            MuscleGroupId = 1,
+                            Name = "Wyciskanie sztangi na ławce poziomej"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Sztanga oparta na górnej części pleców. Zejdź do kąta prostego w kolanach i wstań, trzymając pięty na podłodze.",
+                            EquipmentNeeded = "Sztanga, stojaki",
+                            MuscleGroupId = 2,
+                            Name = "Przysiady ze sztangą na plecach"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Chwyt na szerokość barków, plecy proste. Unieś sztangę, prostując biodra i kolana jednocześnie.",
+                            EquipmentNeeded = "Sztanga",
+                            MuscleGroupId = 3,
+                            Name = "Martwy ciąg klasyczny"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Zwis na drążku, przyciągnij klatkę do drążka, ściągając łopatki. Opuszczaj się do pełnego zwisu.",
+                            EquipmentNeeded = "Drążek",
+                            MuscleGroupId = 3,
+                            Name = "Podciąganie na drążku nachwytem"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Stojąc, wypchnij sztangę znad obojczyków nad głowę i opuść ją kontrolowanie do brody.",
+                            EquipmentNeeded = "Sztanga",
+                            MuscleGroupId = 4,
+                            Name = "Wyciskanie żołnierskie"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Łokcie przy tułowiu, ugnij przedramiona i powoli opuść hantle. Nie bujaj ciałem.",
+                            EquipmentNeeded = "Hantle",
+                            MuscleGroupId = 5,
+                            Name = "Uginanie przedramion z hantlami"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Leżąc na ławce, opuść sztangę łamaną do czoła, zginając tylko łokcie, a następnie wyprostuj ramiona.",
+                            EquipmentNeeded = "Sztanga łamana, ławka",
+                            MuscleGroupId = 6,
+                            Name = "Wyciskanie francuskie"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Tułów prawie równolegle do podłogi, przyciągnij sztangę do brzucha i opuść ją bez zaokrąglania pleców.",
+                            EquipmentNeeded = "Sztanga",
+                            MuscleGroupId = 3,
+                            Name = "Wiosłowanie sztangą w opadzie"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Tylna stopa na ławce, zejdź w dół na nodze wykrocznej i wróć do pozycji startowej.",
+                            EquipmentNeeded = "Hantle, ławka",
+                            MuscleGroupId = 2,
+                            Name = "Przysiad bułgarski"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Oprzyj się na przedramionach, ciało w jednej linii. Napnij brzuch i utrzymuj pozycję bez opadania bioder.",
+                            EquipmentNeeded = "Mata",
+                            MuscleGroupId = 7,
+                            Name = "Deska"
+                        });
                 });
 
             modelBuilder.Entity("FitForge.Api.Models.MuscleGroup", b =>
@@ -77,6 +159,43 @@ namespace FitForge.Api.Migrations
                         .HasName("pk_musclegroups");
 
                     b.ToTable("musclegroups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Klatka piersiowa"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Nogi"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Plecy"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Barki"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Biceps"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Triceps"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Brzuch"
+                        });
                 });
 
             modelBuilder.Entity("FitForge.Api.Models.User", b =>
@@ -171,6 +290,10 @@ namespace FitForge.Api.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("exerciseorder");
 
+                    b.Property<int>("SetNumber")
+                        .HasColumnType("integer")
+                        .HasColumnName("setnumber");
+
                     b.Property<int>("Sets")
                         .HasColumnType("integer")
                         .HasColumnName("sets");
@@ -178,6 +301,10 @@ namespace FitForge.Api.Migrations
                     b.Property<int>("TargetReps")
                         .HasColumnType("integer")
                         .HasColumnName("targetreps");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("numeric")
+                        .HasColumnName("weight");
 
                     b.Property<int>("WorkoutPlanId")
                         .HasColumnType("integer")

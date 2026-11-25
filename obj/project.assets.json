@@ -2606,6 +2606,7 @@
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -2623,6 +2624,7 @@
     },
     "frameworks": {
       "net8.0": {
+        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
@@ -2655,6 +2657,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.34, 8.0.34]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[8.0.34, 8.0.34]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.34, 8.0.34]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2663,16 +2679,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.426/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.428/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Podczas pobierania danych o lukach w zabezpieczeniach pakietu wystąpił błąd: Nie można załadować indeksu usługi dla źródła https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }
