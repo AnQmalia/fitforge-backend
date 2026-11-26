@@ -50,4 +50,27 @@ public class ExercisesController : ControllerBase
         return CreatedAtAction(nameof(GetExercises), new { id = exercise.Id }, exercise);
     }
 
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteExercise(int id)
+    {
+        var exercise = await _context.Exercises.FindAsync(id);
+        if (exercise == null)
+            return NotFound();
+
+        var usedInPlan = await _context.WorkoutPlanItems.AnyAsync(item => item.ExerciseId == id);
+        if (usedInPlan)
+        {
+            return new ContentResult
+            {
+                StatusCode = StatusCodes.Status409Conflict,
+                Content = "To ćwiczenie jest w zapisanym planie.",
+                ContentType = "text/plain; charset=utf-8"
+            };
+        }
+
+        _context.Exercises.Remove(exercise);
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+
 }
