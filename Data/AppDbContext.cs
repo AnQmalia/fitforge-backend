@@ -19,12 +19,17 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<MuscleGroup>().HasData(
             new MuscleGroup { Id = 1, Name = "Klatka piersiowa" },
-            new MuscleGroup { Id = 2, Name = "Nogi" },
             new MuscleGroup { Id = 3, Name = "Plecy" },
             new MuscleGroup { Id = 4, Name = "Barki" },
             new MuscleGroup { Id = 5, Name = "Biceps" },
             new MuscleGroup { Id = 6, Name = "Triceps" },
-            new MuscleGroup { Id = 7, Name = "Brzuch" }
+            new MuscleGroup { Id = 7, Name = "Brzuch" },
+            new MuscleGroup { Id = 8, Name = "Cardio" },
+            new MuscleGroup { Id = 9, Name = "Czworogłowe uda" },
+            new MuscleGroup { Id = 10, Name = "Dwugłowe uda" },
+            new MuscleGroup { Id = 11, Name = "Biodra" },
+            new MuscleGroup { Id = 12, Name = "Łydki" },
+            new MuscleGroup { Id = 13, Name = "Przedramiona" }
         );
 
         modelBuilder.Entity<Exercise>().HasData(
@@ -39,7 +44,7 @@ public class AppDbContext : DbContext
             new Exercise
             {
                 Id = 2,
-                MuscleGroupId = 2,
+                MuscleGroupId = 9,
                 Name = "Przysiady ze sztangą na plecach",
                 Description = "Sztanga oparta na górnej części pleców. Zejdź do kąta prostego w kolanach i wstań, trzymając pięty na podłodze.",
                 EquipmentNeeded = "Sztanga, stojaki"
@@ -95,7 +100,7 @@ public class AppDbContext : DbContext
             new Exercise
             {
                 Id = 9,
-                MuscleGroupId = 2,
+                MuscleGroupId = 9,
                 Name = "Przysiad bułgarski",
                 Description = "Tylna stopa na ławce, zejdź w dół na nodze wykrocznej i wróć do pozycji startowej.",
                 EquipmentNeeded = "Hantle, ławka"

@@ -72,7 +72,7 @@ namespace FitForge.Api.Migrations
                             Id = 2,
                             Description = "Sztanga oparta na górnej części pleców. Zejdź do kąta prostego w kolanach i wstań, trzymając pięty na podłodze.",
                             EquipmentNeeded = "Sztanga, stojaki",
-                            MuscleGroupId = 2,
+                            MuscleGroupId = 9,
                             Name = "Przysiady ze sztangą na plecach"
                         },
                         new
@@ -128,7 +128,7 @@ namespace FitForge.Api.Migrations
                             Id = 9,
                             Description = "Tylna stopa na ławce, zejdź w dół na nodze wykrocznej i wróć do pozycji startowej.",
                             EquipmentNeeded = "Hantle, ławka",
-                            MuscleGroupId = 2,
+                            MuscleGroupId = 9,
                             Name = "Przysiad bułgarski"
                         },
                         new
@@ -168,11 +168,6 @@ namespace FitForge.Api.Migrations
                         },
                         new
                         {
-                            Id = 2,
-                            Name = "Nogi"
-                        },
-                        new
-                        {
                             Id = 3,
                             Name = "Plecy"
                         },
@@ -195,6 +190,36 @@ namespace FitForge.Api.Migrations
                         {
                             Id = 7,
                             Name = "Brzuch"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Cardio"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Czworogłowe uda"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Dwugłowe uda"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Biodra"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Łydki"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Przedramiona"
                         });
                 });
 
