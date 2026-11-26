@@ -2584,7 +2584,7 @@
     ]
   },
   "packageFolders": {
-    "/home/user/.nuget/packages/": {}
+    "/tmp/cursor-sandbox-cache/4ab9535f040d667304ae5ed87920ac8c/nuget": {}
   },
   "project": {
     "version": "1.0.0",
@@ -2592,7 +2592,7 @@
       "projectUniqueName": "/home/user/Pulpit/FitForge.Api/FitForge.Api.csproj",
       "projectName": "FitForge.Api",
       "projectPath": "/home/user/Pulpit/FitForge.Api/FitForge.Api.csproj",
-      "packagesPath": "/home/user/.nuget/packages/",
+      "packagesPath": "/tmp/cursor-sandbox-cache/4ab9535f040d667304ae5ed87920ac8c/nuget",
       "outputPath": "/home/user/Pulpit/FitForge.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [

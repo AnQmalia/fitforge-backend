@@ -50,6 +50,32 @@ public class ExercisesController : ControllerBase
         return CreatedAtAction(nameof(GetExercises), new { id = exercise.Id }, exercise);
     }
 
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Exercise>> UpdateExercise(int id, [FromBody] CreateExerciseDto dto)
+    {
+        var exercise = await _context.Exercises.FindAsync(id);
+        if (exercise == null)
+            return NotFound();
+
+        var name = dto.Name.Trim();
+        if (string.IsNullOrWhiteSpace(name))
+            return BadRequest("Podaj nazwę ćwiczenia.");
+
+        var group = await _context.MuscleGroups.FindAsync(dto.MuscleGroupId);
+        if (group == null)
+            return BadRequest("Wybierz partię mięśniową.");
+
+        exercise.Name = name;
+        exercise.Description = dto.Description?.Trim() ?? string.Empty;
+        exercise.EquipmentNeeded = dto.EquipmentNeeded?.Trim() ?? string.Empty;
+        exercise.MuscleGroupId = group.Id;
+        exercise.MuscleGroup = group;
+
+        await _context.SaveChangesAsync();
+
+        return Ok(exercise);
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteExercise(int id)
     {
