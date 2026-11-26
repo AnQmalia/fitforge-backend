@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FitForge.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8171aff0d53392125ee9bf5abdd653864f06733")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9938b62f90987da208daae5d5793114c23fbc3a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("FitForge.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FitForge.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
