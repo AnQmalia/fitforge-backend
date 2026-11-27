@@ -22,6 +22,122 @@ namespace FitForge.Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("ExerciseSecondaryMuscleGroups", b =>
+                {
+                    b.Property<int>("ExerciseId")
+                        .HasColumnType("integer")
+                        .HasColumnName("exerciseid");
+
+                    b.Property<int>("MuscleGroupId")
+                        .HasColumnType("integer")
+                        .HasColumnName("musclegroupid");
+
+                    b.HasKey("ExerciseId", "MuscleGroupId")
+                        .HasName("pk_exercisesecondarymusclegroups");
+
+                    b.HasIndex("MuscleGroupId")
+                        .HasDatabaseName("ix_exercisesecondarymusclegroups_musclegroupid");
+
+                    b.ToTable("exercisesecondarymusclegroups");
+
+                    b.HasData(
+                        new
+                        {
+                            ExerciseId = 1,
+                            MuscleGroupId = 4
+                        },
+                        new
+                        {
+                            ExerciseId = 1,
+                            MuscleGroupId = 6
+                        },
+                        new
+                        {
+                            ExerciseId = 2,
+                            MuscleGroupId = 7
+                        },
+                        new
+                        {
+                            ExerciseId = 2,
+                            MuscleGroupId = 10
+                        },
+                        new
+                        {
+                            ExerciseId = 2,
+                            MuscleGroupId = 11
+                        },
+                        new
+                        {
+                            ExerciseId = 3,
+                            MuscleGroupId = 10
+                        },
+                        new
+                        {
+                            ExerciseId = 3,
+                            MuscleGroupId = 11
+                        },
+                        new
+                        {
+                            ExerciseId = 3,
+                            MuscleGroupId = 13
+                        },
+                        new
+                        {
+                            ExerciseId = 4,
+                            MuscleGroupId = 5
+                        },
+                        new
+                        {
+                            ExerciseId = 4,
+                            MuscleGroupId = 13
+                        },
+                        new
+                        {
+                            ExerciseId = 5,
+                            MuscleGroupId = 6
+                        },
+                        new
+                        {
+                            ExerciseId = 5,
+                            MuscleGroupId = 7
+                        },
+                        new
+                        {
+                            ExerciseId = 6,
+                            MuscleGroupId = 13
+                        },
+                        new
+                        {
+                            ExerciseId = 8,
+                            MuscleGroupId = 5
+                        },
+                        new
+                        {
+                            ExerciseId = 8,
+                            MuscleGroupId = 13
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 10
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 11
+                        },
+                        new
+                        {
+                            ExerciseId = 10,
+                            MuscleGroupId = 4
+                        },
+                        new
+                        {
+                            ExerciseId = 10,
+                            MuscleGroupId = 11
+                        });
+                });
+
             modelBuilder.Entity("FitForge.Api.Models.Exercise", b =>
                 {
                     b.Property<int>("Id")
@@ -345,6 +461,23 @@ namespace FitForge.Api.Migrations
                         .HasDatabaseName("ix_workoutplanitems_workoutplanid");
 
                     b.ToTable("workoutplanitems");
+                });
+
+            modelBuilder.Entity("ExerciseSecondaryMuscleGroups", b =>
+                {
+                    b.HasOne("FitForge.Api.Models.Exercise", null)
+                        .WithMany()
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_exercisesecondarymusclegroups_exercises_exerciseid");
+
+                    b.HasOne("FitForge.Api.Models.MuscleGroup", null)
+                        .WithMany()
+                        .HasForeignKey("MuscleGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_exercisesecondarymusclegroups_musclegroups_musclegroupid");
                 });
 
             modelBuilder.Entity("FitForge.Api.Models.Exercise", b =>

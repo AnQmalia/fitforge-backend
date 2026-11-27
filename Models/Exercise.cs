@@ -9,6 +9,7 @@ public class Exercise
     public string Name { get; set; }  = string.Empty;
     public string Description { get; set; }  = string.Empty;
     public string EquipmentNeeded { get; set; }  = string.Empty;
-    
+
+    public ICollection<MuscleGroup> SecondaryMuscleGroups { get; set; } = new List<MuscleGroup>();
     public ICollection<WorkoutPlanItem> WorkoutPlanItems { get; set; } = new List<WorkoutPlanItem>();
 }

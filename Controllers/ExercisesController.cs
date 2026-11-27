@@ -20,7 +20,12 @@ public class ExercisesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Exercise>>> GetExercises()
     {
-        var exercises = await _context.Exercises.Include(e => e.MuscleGroup).ToListAsync();
+        var exercises = await _context.Exercises
+            .AsNoTracking()
+            .Include(e => e.MuscleGroup)
+            .Include(e => e.SecondaryMuscleGroups)
+            .OrderBy(e => e.Id)
+            .ToListAsync();
         return Ok(exercises);
     }
 
@@ -31,21 +36,31 @@ public class ExercisesController : ControllerBase
         if (string.IsNullOrWhiteSpace(name))
             return BadRequest("Podaj nazwę ćwiczenia.");
 
-        var groupExists = await _context.MuscleGroups.AnyAsync(g => g.Id == dto.MuscleGroupId);
-        if (!groupExists)
+        var group = await _context.MuscleGroups.FindAsync(dto.MuscleGroupId);
+        if (group == null)
             return BadRequest("Wybierz partię mięśniową.");
+
+        var secondaryIds = (dto.SecondaryMuscleGroupIds ?? new List<int>())
+            .Where(gid => gid != group.Id)
+            .Distinct()
+            .ToList();
+
+        var secondaryGroups = secondaryIds.Count > 0
+            ? await _context.MuscleGroups.Where(g => secondaryIds.Contains(g.Id)).ToListAsync()
+            : new List<MuscleGroup>();
 
         var exercise = new Exercise
         {
             Name = name,
             Description = dto.Description?.Trim() ?? string.Empty,
             EquipmentNeeded = dto.EquipmentNeeded?.Trim() ?? string.Empty,
-            MuscleGroupId = dto.MuscleGroupId
+            MuscleGroupId = group.Id,
+            MuscleGroup = group,
+            SecondaryMuscleGroups = secondaryGroups
         };
 
         _context.Exercises.Add(exercise);
         await _context.SaveChangesAsync();
-        await _context.Entry(exercise).Reference(e => e.MuscleGroup).LoadAsync();
 
         return CreatedAtAction(nameof(GetExercises), new { id = exercise.Id }, exercise);
     }
@@ -53,7 +68,9 @@ public class ExercisesController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<Exercise>> UpdateExercise(int id, [FromBody] CreateExerciseDto dto)
     {
-        var exercise = await _context.Exercises.FindAsync(id);
+        var exercise = await _context.Exercises
+            .Include(e => e.SecondaryMuscleGroups)
+            .FirstOrDefaultAsync(e => e.Id == id);
         if (exercise == null)
             return NotFound();
 
@@ -65,11 +82,24 @@ public class ExercisesController : ControllerBase
         if (group == null)
             return BadRequest("Wybierz partię mięśniową.");
 
+        var secondaryIds = (dto.SecondaryMuscleGroupIds ?? new List<int>())
+            .Where(gid => gid != group.Id)
+            .Distinct()
+            .ToList();
+
+        var secondaryGroups = secondaryIds.Count > 0
+            ? await _context.MuscleGroups.Where(g => secondaryIds.Contains(g.Id)).ToListAsync()
+            : new List<MuscleGroup>();
+
         exercise.Name = name;
         exercise.Description = dto.Description?.Trim() ?? string.Empty;
         exercise.EquipmentNeeded = dto.EquipmentNeeded?.Trim() ?? string.Empty;
         exercise.MuscleGroupId = group.Id;
         exercise.MuscleGroup = group;
+
+        exercise.SecondaryMuscleGroups.Clear();
+        foreach (var secondary in secondaryGroups)
+            exercise.SecondaryMuscleGroups.Add(secondary);
 
         await _context.SaveChangesAsync();
 

@@ -6,4 +6,5 @@ public class CreateExerciseDto
     public string? Description { get; set; }
     public string? EquipmentNeeded { get; set; }
     public int MuscleGroupId { get; set; }
+    public List<int> SecondaryMuscleGroupIds { get; set; } = new();
 }

@@ -17,6 +17,44 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<Exercise>()
+            .HasOne(e => e.MuscleGroup)
+            .WithMany(m => m.Exercises)
+            .HasForeignKey(e => e.MuscleGroupId);
+
+        modelBuilder.Entity<Exercise>()
+            .HasMany(e => e.SecondaryMuscleGroups)
+            .WithMany()
+            .UsingEntity<Dictionary<string, object>>(
+                "ExerciseSecondaryMuscleGroups",
+                j => j.HasOne<MuscleGroup>().WithMany().HasForeignKey("MuscleGroupId").OnDelete(DeleteBehavior.Cascade),
+                j => j.HasOne<Exercise>().WithMany().HasForeignKey("ExerciseId").OnDelete(DeleteBehavior.Cascade),
+                j =>
+                {
+                    j.HasKey("ExerciseId", "MuscleGroupId");
+                    j.HasData(
+                        new { ExerciseId = 1, MuscleGroupId = 4 },
+                        new { ExerciseId = 1, MuscleGroupId = 6 },
+                        new { ExerciseId = 2, MuscleGroupId = 7 },
+                        new { ExerciseId = 2, MuscleGroupId = 10 },
+                        new { ExerciseId = 2, MuscleGroupId = 11 },
+                        new { ExerciseId = 3, MuscleGroupId = 10 },
+                        new { ExerciseId = 3, MuscleGroupId = 11 },
+                        new { ExerciseId = 3, MuscleGroupId = 13 },
+                        new { ExerciseId = 4, MuscleGroupId = 5 },
+                        new { ExerciseId = 4, MuscleGroupId = 13 },
+                        new { ExerciseId = 5, MuscleGroupId = 6 },
+                        new { ExerciseId = 5, MuscleGroupId = 7 },
+                        new { ExerciseId = 6, MuscleGroupId = 13 },
+                        new { ExerciseId = 8, MuscleGroupId = 5 },
+                        new { ExerciseId = 8, MuscleGroupId = 13 },
+                        new { ExerciseId = 9, MuscleGroupId = 10 },
+                        new { ExerciseId = 9, MuscleGroupId = 11 },
+                        new { ExerciseId = 10, MuscleGroupId = 4 },
+                        new { ExerciseId = 10, MuscleGroupId = 11 }
+                    );
+                });
+
         modelBuilder.Entity<MuscleGroup>().HasData(
             new MuscleGroup { Id = 1, Name = "Klatka piersiowa" },
             new MuscleGroup { Id = 3, Name = "Plecy" },
